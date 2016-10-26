@@ -1,8 +1,8 @@
 ---
-title: "Test Knitr doc"
+title: "Test Knitr PAG"
 framework: io2012
 highlighter: highlight.js
-output: pdf_document
+output: html_document
 mode: selfcontained
 hitheme: tomorrow
 ext_widgets:
@@ -44,9 +44,9 @@ runif(1)
 ---
 
 
-## R Markdown
+## RMarkdown HTML Test
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+data source : PAG.
 
 ```{r, cache=TRUE, echo=FALSE, message=FALSE}
 source("S:/Institutional Research/Chen/R setup/ODBC Connection.R")
@@ -237,6 +237,18 @@ knitr::kable(ds.wide, digits = 1, caption = 'Persist 1 rate')
 )
 p1$save('fig/p1.html', cdn = TRUE)
 cat('<iframe src="fig/p1.html" width=100%, height=600></iframe>')
+```
+
+
+highchart example, 
+```{r, results='asis', echo=FALSE}
+options(digits=2)
+p2 <- hPlot(P1~ COHORT, data=ds, type='line', group="ETHNICITY")
+p2$tooltip(formatter = "#! function() { return   this.x + '</b> ' +  Highcharts.numberFormat(this.y, 2); } !#")
+p2$yAxis(title=list(text="Persistence 1st Fall"))
+p2$save('fig/p2.html', cdn = TRUE)
+cat('<iframe src="fig/p2.html" width=100%, height=600></iframe>')
+
 ```
 
 
