@@ -212,8 +212,34 @@ PAG <- sqlQuery(MSUEDW, "select distinct PID,
                 ")
 ```
 
-Persist 1st Fall Table
-```{r, message=FALSE, echo=FALSE, results='asis'}
+####PAG rate by cohort and race
+
+```{r, echo=FALSE, cache=TRUE}
+library(dplyr)
+library(reshape2)
+require(DT)
+dsl <- melt(PAG[,c("PID", "COHORT", "ETHNICITY", "PERSIST1","GRAD4", "GRAD6")], c("PID", "COHORT" ,"ETHNICITY"), c("PERSIST1", "GRAD4" ,"GRAD6" ) )
+
+tbl <- dcast(dsl, COHORT + ETHNICITY~variable, function(x){round(mean(x),1)})
+
+hc <- PAG %>% group_by(COHORT, ETHNICITY) %>% summarise(HC=n())
+
+tbl1 <- merge( hc,tbl, by=c("COHORT", "ETHNICITY"))
+#knitr::kable(tbl, digits = 1, caption = 'Persist & Grad rate')
+datatable(tbl1,options = list(pageLength = 20, responsive=T))
+#library(tigerstats)
+#table(PAG$INDICATOR, PAG$COHORT)
+
+#tab <-xtabs( ~ COHORT+ ETHNICITY, data=PAG)
+#addmargins(tab)
+#colPerc(xtabs( ~ COHORT+ ETHNICITY, data=PAG))
+
+```
+
+
+
+
+```{r, message=FALSE, echo=FALSE, results='asis', include=FALSE}
 
 library(dplyr)
 library(tidyr)
@@ -225,11 +251,28 @@ ds.wide <- ds %>%select(-G6) %>%spread(ETHNICITY, P1)
 knitr::kable(ds.wide, digits = 1, caption = 'Persist 1 rate')
 
 
+```
+
+
+#### PAG rates by cohort
+```{r, echo=FALSE, results='asis'}
+tbl2 <-  dsl %>% group_by(COHORT, variable)%>% summarise(value=round(mean(value),1))
+p3 <- nPlot(value ~ COHORT, group = 'variable', type = 'lineChart',
+            data =tbl2
+)
+
+p3$chart(useInteractiveGuideline=TRUE)
+
+p3$save('fig/p3.html', cdn = TRUE)
+cat('<iframe src="fig/p3.html" width=100%, height=600></iframe>')
 
 ```
 
 
 
+
+
+####Persist1 by race and cohort
 ```{r, echo=FALSE,results = 'asis'}
 
  p1<-nPlot(P1 ~ COHORT, group = 'ETHNICITY', type = 'multiBarChart',
@@ -240,12 +283,12 @@ cat('<iframe src="fig/p1.html" width=100%, height=600></iframe>')
 ```
 
 
-highchart example, 
+####Graduate 6 by race and cohort 
 ```{r, results='asis', echo=FALSE}
 options(digits=2)
-p2 <- hPlot(P1~ COHORT, data=ds, type='line', group="ETHNICITY")
+p2 <- hPlot(G6~ COHORT, data=ds, type='line', group="ETHNICITY")
 p2$tooltip(formatter = "#! function() { return   this.x + '</b> ' +  Highcharts.numberFormat(this.y, 2); } !#")
-p2$yAxis(title=list(text="Persistence 1st Fall"))
+p2$yAxis(title=list(text="Graduate by 6yr"))
 p2$save('fig/p2.html', cdn = TRUE)
 cat('<iframe src="fig/p2.html" width=100%, height=600></iframe>')
 
