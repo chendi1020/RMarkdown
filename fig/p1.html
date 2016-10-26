@@ -1,0 +1,574 @@
+<!doctype HTML>
+<meta charset = 'utf-8'>
+<html>
+  <head>
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.css'>
+    
+    <script src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js' type='text/javascript'></script>
+    <script src='//d3js.org/d3.v3.min.js' type='text/javascript'></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.min.js' type='text/javascript'></script>
+    <script src='//nvd3.org/assets/lib/fisheye.js' type='text/javascript'></script>
+    
+    <style>
+    .rChart {
+      display: block;
+      margin-left: auto; 
+      margin-right: auto;
+      width: 800px;
+      height: 400px;
+    }  
+    </style>
+    
+  </head>
+  <body >
+    
+    <div id = 'charte947782c0d' class = 'rChart nvd3'></div>    
+    <script type='text/javascript'>
+ $(document).ready(function(){
+      drawcharte947782c0d()
+    });
+    function drawcharte947782c0d(){  
+      var opts = {
+ "dom": "charte947782c0d",
+"width":    800,
+"height":    400,
+"x": "COHORT",
+"y": "P1",
+"group": "ETHNICITY",
+"type": "multiBarChart",
+"id": "charte947782c0d" 
+},
+        data = [
+ {
+ "COHORT": 2006,
+"ETHNICITY": "Amer Ind",
+"P1": 91.17647058824,
+"G6": 55.88235294118 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 90.39408866995,
+"G6": 79.80295566502 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "Black",
+"P1": 86.51315789474,
+"G6": 60.19736842105 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "BLANK",
+"P1":          91.25,
+"G6":             85 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "Hispanic",
+"P1": 81.35593220339,
+"G6": 54.23728813559 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 88.84297520661,
+"G6": 65.70247933884 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "Multiple",
+"P1":  95.5223880597,
+"G6": 83.58208955224 
+},
+{
+ "COHORT": 2006,
+"ETHNICITY": "White",
+"P1": 91.87196547384,
+"G6": 82.61104117964 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "Amer Ind",
+"P1": 93.33333333333,
+"G6":             70 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 92.30769230769,
+"G6":  77.5641025641 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "Black",
+"P1": 88.19561551433,
+"G6":  56.6610455312 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "BLANK",
+"P1": 84.07079646018,
+"G6":  64.6017699115 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "Hispanic",
+"P1": 87.02928870293,
+"G6": 64.85355648536 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 88.53868194842,
+"G6": 61.89111747851 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "Multiple",
+"P1": 98.09523809524,
+"G6": 83.80952380952 
+},
+{
+ "COHORT": 2007,
+"ETHNICITY": "White",
+"P1":  91.3175254056,
+"G6": 81.26225708682 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "Amer Ind",
+"P1": 91.66666666667,
+"G6":           62.5 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 91.59420289855,
+"G6": 78.55072463768 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "Black",
+"P1": 87.36842105263,
+"G6": 57.71929824561 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "BLANK",
+"P1": 89.70588235294,
+"G6": 68.38235294118 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "Hispanic",
+"P1": 86.72985781991,
+"G6": 65.87677725118 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 84.41330998249,
+"G6": 67.60070052539 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "Multiple",
+"P1": 96.47058823529,
+"G6": 81.17647058824 
+},
+{
+ "COHORT": 2008,
+"ETHNICITY": "White",
+"P1": 92.33893298874,
+"G6": 82.96104855086 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "Amer Ind",
+"P1": 72.72727272727,
+"G6": 57.57575757576 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 91.62162162162,
+"G6": 80.27027027027 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "Black",
+"P1": 87.82894736842,
+"G6": 58.71710526316 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "BLANK",
+"P1": 88.40579710145,
+"G6":  76.8115942029 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "Hispanic",
+"P1": 84.88888888889,
+"G6": 60.44444444444 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 90.21739130435,
+"G6": 68.94409937888 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "Multiple",
+"P1":           97.5,
+"G6":           87.5 
+},
+{
+ "COHORT": 2009,
+"ETHNICITY": "White",
+"P1": 91.36858475894,
+"G6": 80.48211508554 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "Amer Ind",
+"P1": 92.30769230769,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 91.64086687307,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "Black",
+"P1": 86.65338645418,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "BLANK",
+"P1": 82.43243243243,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "Hispanic",
+"P1": 87.81362007168,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 86.19047619048,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "Multiple",
+"P1":  86.8932038835,
+"G6": null 
+},
+{
+ "COHORT": 2010,
+"ETHNICITY": "White",
+"P1": 91.70221015898,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "Amer Ind",
+"P1": 78.57142857143,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 90.47619047619,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "Black",
+"P1": 86.89407540395,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "BLANK",
+"P1": 83.83838383838,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "Hispanic",
+"P1": 83.56643356643,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "INTERNATIONAL",
+"P1":  90.0702106319,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "Multiple",
+"P1": 86.32075471698,
+"G6": null 
+},
+{
+ "COHORT": 2011,
+"ETHNICITY": "White",
+"P1": 91.43392689784,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "Amer Ind",
+"P1": 92.85714285714,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 93.12320916905,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "Black",
+"P1": 85.49019607843,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "BLANK",
+"P1": 87.85046728972,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "Hispanic",
+"P1": 83.44827586207,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 90.71487263763,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "Multiple",
+"P1": 85.42713567839,
+"G6": null 
+},
+{
+ "COHORT": 2012,
+"ETHNICITY": "White",
+"P1":   91.064293498,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "Amer Ind",
+"P1": 92.30769230769,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": 93.17585301837,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "Black",
+"P1": 83.24873096447,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "BLANK",
+"P1": 94.20289855072,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "Hispanic",
+"P1": 86.55737704918,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 92.30769230769,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "Multiple",
+"P1": 89.67136150235,
+"G6": null 
+},
+{
+ "COHORT": 2013,
+"ETHNICITY": "White",
+"P1": 92.62654444002,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "Amer Ind",
+"P1":          93.75,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1":  95.7671957672,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "Black",
+"P1": 85.83196046129,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "BLANK",
+"P1": 86.20689655172,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "Hispanic",
+"P1": 88.70056497175,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "INTERNATIONAL",
+"P1": 92.03767123288,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "Multiple",
+"P1": 90.58823529412,
+"G6": null 
+},
+{
+ "COHORT": 2014,
+"ETHNICITY": "White",
+"P1": 92.95914319714,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "Amer Ind",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "Asian/Hawaii/PI",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "Black",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "BLANK",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "Hispanic",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "INTERNATIONAL",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "Multiple",
+"P1": null,
+"G6": null 
+},
+{
+ "COHORT": 2015,
+"ETHNICITY": "White",
+"P1": null,
+"G6": null 
+} 
+]
+  
+      if(!(opts.type==="pieChart" || opts.type==="sparklinePlus" || opts.type==="bulletChart")) {
+        var data = d3.nest()
+          .key(function(d){
+            //return opts.group === undefined ? 'main' : d[opts.group]
+            //instead of main would think a better default is opts.x
+            return opts.group === undefined ? opts.y : d[opts.group];
+          })
+          .entries(data);
+      }
+      
+      if (opts.disabled != undefined){
+        data.map(function(d, i){
+          d.disabled = opts.disabled[i]
+        })
+      }
+      
+      nv.addGraph(function() {
+        var chart = nv.models[opts.type]()
+          .width(opts.width)
+          .height(opts.height)
+          
+        if (opts.type != "bulletChart"){
+          chart
+            .x(function(d) { return d[opts.x] })
+            .y(function(d) { return d[opts.y] })
+        }
+          
+         
+        
+          
+        
+
+        
+        
+        
+      
+       d3.select("#" + opts.id)
+        .append('svg')
+        .datum(data)
+        .transition().duration(500)
+        .call(chart);
+
+       nv.utils.windowResize(chart.update);
+       return chart;
+      });
+    };
+</script>
+    
+    <script></script>    
+  </body>
+</html>

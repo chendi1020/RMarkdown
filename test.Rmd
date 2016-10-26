@@ -1,0 +1,242 @@
+---
+title: "Test Knitr doc"
+framework: io2012
+highlighter: highlight.js
+output: pdf_document
+mode: selfcontained
+hitheme: tomorrow
+ext_widgets:
+  rCharts:
+  - libraries/highcharts
+  - libraries/nvd3
+  - libraries/morris
+  - libraries/leaflet
+  - libraries/rickshaw
+url:
+  assets: ../../assets
+  lib: ../../librariesNew
+widgets:
+- mathjax
+- quiz
+- bootstrap
+---
+
+
+
+```{r setup, cache = F, echo = F, message = F, warning = F, tidy = F, results='hide'}
+# make this an external chunk that can be included in any file
+library(knitr)
+options(width = 100)
+opts_chunk$set(message = F, error = F, warning = F, comment = NA, fig.align = 'center', dpi = 100, tidy = F, cache.path = '.cache/', fig.path = 'fig/')
+
+options(xtable.type = 'html')
+knit_hooks$set(inline = function(x) {
+  if(is.numeric(x)) {
+    round(x, getOption('digits'))
+  } else {
+    paste(as.character(x), collapse = ', ')
+  }
+})
+knit_hooks$set(plot = knitr:::hook_plot_html)
+runif(1)
+```
+
+---
+
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+```{r, cache=TRUE, echo=FALSE, message=FALSE}
+source("S:/Institutional Research/Chen/R setup/ODBC Connection.R")
+
+#PAG get the UNFRST cohort since 2000
+PAG <- sqlQuery(MSUEDW, "select distinct PID,
+                STUDENT_LEVEL,
+                DEGREE_TERM_CODE,
+                MAJOR_DEGREE,
+                DEG_YEAR,
+                LEVEL_ENTRY_STATUS,
+                MAJOR_JUNIOR_CLASS,
+                MAJOR_FIRST_SEMESTER,
+                ENTRY_TERM_CODE,
+                SEMESTER_COUNT,
+                TERM_COUNT,
+                FIRSTTERMCREDIT,
+                FIRSTTERMGPA,
+                LASTCUMGPA,
+                LASTTERM,
+                LASTTERMSEQ,
+                SEMESTER_COUNT_1STDEGREE,
+                TERM_COUNT_1STDEGREE,
+                FIRST_CUM_PASSED_HOURS,
+                FIRST_CUM_CMPLT_HOURS,
+                FIRST_CLASSCODE,
+                ENTRY_TIME_STATUS,
+                ENTRANT_SUMMER_FALL,
+                CITIZENSHIP_CODE,
+                GENDER,
+                PERSIST1,
+                PERSIST2,
+                PERSIST3,
+                PERSIST4,
+                PERSIST5,
+                PERSIST6,
+                GRAD4,
+                GRAD5,
+                GRAD6,
+                GRAD7,
+                GRAD8,
+                GRAD9,
+                GRAD10,
+                GRAD11,
+                GRAD12,
+                GRAD13,
+                GRAD14,
+                GRAD15,
+                COHORT,
+                ETHNICITY,
+                ACT_COMPOSITE,
+                ACT_WRITING,
+                ACT_ENGLISHWRITING,
+                SPECIAL_NEED_AC,
+                SPECIAL_NEED_AU,
+                SPECIAL_NEED_BRL,
+                SPECIAL_NEED_LP,
+                SPECIAL_NEED_MOBL,
+                SPECIAL_NEED_NONM,
+                SPECIAL_NEED_OS,
+                SPECIAL_NEED,
+                CAAP,
+                SUPER,
+                MAGIC,
+                CAMP,
+                FIRST_GEN,
+                VETERAN_ACTIVE,
+                VETERAN_EDU,
+                VETERAN_DEPEND,
+                TRIO,
+                TRIE,
+                HONOR,
+                HONOR2,
+                SCLR,
+                ATHLETE,
+                SSSC,
+                FIRST_VET_CLASS,
+                FIRST_VET_TYPE,
+                FIRST_VETERAN_TERM,
+                VET_ANY_BENEFIT,
+                VET_CERT_BENEFIT,
+                VET_CERT_BENEFIT_CHILD,
+                VET_CERT_BENEFIT_SELF,
+                VET_CERT_BENEFIT_SPOUSE,
+                COLLEGE_FIRST,
+                COLLEGE_FIRST_NAME,
+                COLLEGE_JUNIOR,
+                COLLEGE_JUNIOR_NAME,
+                COLLEGE_DEGREE,
+                COLLEGE_DEGREE_NAME,
+                DEPT_FIRST,
+                DEPT_FIRST_NAME,
+                DEPT_JUNIOR,
+                DEPT_JUNIOR_NAME,
+                DEPT_DEGREE,
+                DEPT_DEGREE_NAME,
+                MAJOR_NAME_FIRST,
+                MAJOR_NAME_JUNIOR,
+                MAJOR_NAME_DEGREE,
+                STEM_FIRST,
+                STEM_JUNIOR,
+                STEM_DEGREE,
+                STUDENT_NAME,
+                RSDNC_CODE,
+                FIRSTATLG,
+                FIRSTMATHG,
+                PRED_GPA,
+                FRSTZERO,
+                NUMZERO,
+                LASTZERO,
+                MULTIZER,
+                NON_MATH_ZEROES,
+                ADR_CNTRY_CODE,
+                ADR_STATE_CODE,
+                ADR_CNTY_CODE,
+                COUNTY_NAME,
+                PROBATION,
+                JUNIOR,
+                FEEBASED,
+                FIRSTTERMGPA_,
+                FIRSTATL,
+                FIRSTMATH,
+                INDICATOR,
+                ATRISK,
+                PROJGPA,
+                ENTRY_SEMESTER,
+                ETHNICITY_ORIGINAL,
+                CITIZENSHIP,
+                ETHNIC_GROUP,
+                ENTRY_TERM_SEQ_ID,
+                DEGREE_TERM_SEQ_ID,
+                TTD_IN_YEARS,
+                ENROLLMENTS,
+                TTD_TERM_YEAR,
+                GRADUATING_COHORT,
+                PAL_CHRT,
+                ENTITY_ID,
+                ENTITY_NAME,
+                ENTITY_CATEGORY,
+                SAM_RECORD,
+                NB_FINAID_1ST_YR,
+                PELL_1ST_YR,
+                SEOG_1ST_YR,
+                EFC_1ST_YR,
+                FIRST_GEN_FA_1ST_YR,
+                PARENT_1F_ED_LEVEL_FA_1ST_YR,
+                PARENT_2M_ED_LEVEL_FA_1ST_YR,
+                PELL_ANY_YEAR,
+                AWARD_MAJOR1,
+                AWARD_MAJOR2,
+                AWARD_MAJOR3,
+                AWARD_MAJOR4,
+                AWARD_MAJOR5,
+                AWARD_NCES_CODE1,
+                AWARD_NCES_CODE2,
+                AWARD_NCES_CODE3,
+                AWARD_NCES_CODE4,
+                AWARD_NCES_CODE5,
+                URM
+                from OPB_PERS_FALL.PERSISTENCE_V
+                where student_level='UN' and level_entry_status='FRST' and (ENTRANT_SUMMER_FALL='Y' or substr(ENTRY_TERM_CODE,1,1)='F')
+                and cohort >=2000 
+                ")
+```
+
+Persist 1st Fall Table
+```{r, message=FALSE, echo=FALSE, results='asis'}
+
+library(dplyr)
+library(tidyr)
+library(rCharts)
+
+ds <- PAG %>% group_by(COHORT, ETHNICITY) %>% summarise(P1=mean(PERSIST1), G6=mean(GRAD6))
+ds.wide <- ds %>%select(-G6) %>%spread(ETHNICITY, P1)
+
+knitr::kable(ds.wide, digits = 1, caption = 'Persist 1 rate')
+
+
+
+```
+
+
+
+```{r, echo=FALSE,results = 'asis'}
+
+ p1<-nPlot(P1 ~ COHORT, group = 'ETHNICITY', type = 'multiBarChart',
+            data = ds[ds$COHORT>2005 & ds$COHORT <=2015,]
+)
+p1$save('fig/p1.html', cdn = TRUE)
+cat('<iframe src="fig/p1.html" width=100%, height=600></iframe>')
+```
+
+
