@@ -264,7 +264,7 @@ p3 <- nPlot(value ~ COHORT, group = 'variable', type = 'lineChart',
 p3$chart(useInteractiveGuideline=TRUE)
 
 p3$save('fig/p3.html', cdn = TRUE)
-cat('<iframe src="fig/p3.html" width=100%, height=600></iframe>')
+cat('<iframe src="fig/p3.html" width=100%, height=500></iframe>')
 
 ```
 
@@ -279,7 +279,7 @@ cat('<iframe src="fig/p3.html" width=100%, height=600></iframe>')
             data = ds[ds$COHORT>2005 & ds$COHORT <=2015,]
 )
 p1$save('fig/p1.html', cdn = TRUE)
-cat('<iframe src="fig/p1.html" width=100%, height=600></iframe>')
+cat('<iframe src="fig/p1.html" width=100%, height=500></iframe>')
 ```
 
 
@@ -290,8 +290,50 @@ p2 <- hPlot(G6~ COHORT, data=ds, type='line', group="ETHNICITY")
 p2$tooltip(formatter = "#! function() { return   this.x + '</b> ' +  Highcharts.numberFormat(this.y, 2); } !#")
 p2$yAxis(title=list(text="Graduate by 6yr"))
 p2$save('fig/p2.html', cdn = TRUE)
-cat('<iframe src="fig/p2.html" width=100%, height=600></iframe>')
+cat('<iframe src="fig/p2.html" width=100%, height=500></iframe>')
 
 ```
 
+
+
+####Major College Move from first to junior to graduate (Cohort=2010)
+```{r,,results='asis', echo=FALSE}
+library(dplyr)
+library(networkD3)
+library(magrittr)
+curcohort <- PAG %>% filter(COHORT==2010) 
+curcohort$juniorst <- ifelse(is.na(curcohort$COLLEGE_JUNIOR), 'No Junior Status', paste0(curcohort$COLLEGE_JUNIOR,'-', curcohort$COLLEGE_JUNIOR_NAME))
+curcohort$gradst <- ifelse(is.na(curcohort$COLLEGE_DEGREE), 'Not Grad', paste(curcohort$COLLEGE_DEGREE,'-', curcohort$COLLEGE_DEGREE_NAME))
+curcohort <- curcohort%>% mutate(firstcoll=paste0(COLLEGE_FIRST,'-' ,COLLEGE_FIRST_NAME)) %>% select(PID, firstcoll,juniorst, gradst)%>% 
+        mutate(firstcoll=paste(firstcoll,'(first)'), juniorst=paste(juniorst, '(junior)'), gradst=paste(gradst,'(grad)'))
+
+d1 <- curcohort[,c(1:3)]
+d2 <- curcohort[,c(1,3,4)]
+names(d2) <- names(d1)
+
+curds <- rbind(d1,d2)
+
+aggds <- curds %>% group_by(firstcoll,juniorst) %>% summarise(value=length(unique(PID)))
+
+#node
+node <- unique(c(as.character(aggds$firstcoll), as.character(aggds$juniorst) ))
+t<-data.frame(x=1:length(node), node)
+t$node <- as.character(t$node)
+ t1 <- merge(aggds,t, by.x = "firstcoll", by.y = "node", all.x = T)
+ t1 <- merge(t1,t, by.x = "juniorst", by.y = "node", all.x = T)
+ t1 <- t1 %>% select(x.x, x.y,value) %>% rename(source=x.x, target=x.y) %>% mutate(source=source-1, target=target-1)
+ 
+ 
+ #t <- t %>% rename(node=name)
+ name <- as.character(t[,2])
+ listdata <- list(nodes=as.data.frame(name, stringsAsFactors = F), links=t1)
+ 
+ # Plot
+n1<-sankeyNetwork(Links = listdata$links, Nodes = listdata$nodes, Source = "source",
+             Target = "target", Value = "value", NodeID = "name",
+             units = " ", fontSize = 12, nodeWidth = 30)
+saveNetwork(n1, file="n1.html")
+cat('<iframe src="n1.html" width=100%, height=800 ></iframe>')
+ 
+```
 
