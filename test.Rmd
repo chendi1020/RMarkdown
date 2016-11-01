@@ -299,7 +299,7 @@ cat('<iframe src="fig/p2.html" width=100%, height=500></iframe>')
 
 
 ####Major College Move from first to junior to graduate (Cohort=2010)
-```{r,,results='asis', echo=FALSE,fig.align = 'center', dpi = 100, tidy = F}
+```{r,results='asis', echo=FALSE,fig.align = 'center', dpi = 100, tidy = F}
 library(dplyr)
 library(networkD3)
 library(magrittr)
@@ -337,5 +337,18 @@ n1<-sankeyNetwork(Links = listdata$links, Nodes = listdata$nodes, Source = "sour
 saveNetwork(n1, file="n1.html")
 cat('<iframe src="n1.html" width=100%, height=800 ></iframe>')
  
+```
+
+####Distribution of first term GPA by 6yr graduation and race
+```{r,results='asis', echo=FALSE,fig.align = 'center', dpi = 100, tidy = F}
+library(plotly)
+library(dplyr)
+
+ds <- PAG %>% filter(COHORT==2010 & ! is.na(FIRSTTERMGPA) ) %>%
+        select(PID, FIRSTTERMGPA, GRAD6, ETHNICITY)
+
+p <- plot_ly(ds, x = ~GRAD6, y = ~FIRSTTERMGPA, color = ~ETHNICITY, type = "box") %>%
+        layout(boxmode = "group")
+p
 ```
 
