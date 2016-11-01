@@ -212,6 +212,8 @@ PAG <- sqlQuery(MSUEDW, "select distinct PID,
                 ")
 ```
 
+
+
 ####PAG rate by cohort and race
 
 ```{r, echo=FALSE, cache=TRUE}
@@ -297,7 +299,7 @@ cat('<iframe src="fig/p2.html" width=100%, height=500></iframe>')
 
 
 ####Major College Move from first to junior to graduate (Cohort=2010)
-```{r,,results='asis', echo=FALSE}
+```{r,,results='asis', echo=FALSE,fig.align = 'center', dpi = 100, tidy = F}
 library(dplyr)
 library(networkD3)
 library(magrittr)
